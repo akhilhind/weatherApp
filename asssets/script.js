@@ -28,7 +28,7 @@ function formatAMPM(data) {
     var minutes = "" + date.getMinutes();
     var seconds = "" + date.getSeconds();
     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-    console.log(formattedTime);
+    // console.log(formattedTime);
     var ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12;
@@ -38,7 +38,7 @@ function formatAMPM(data) {
 }
 
 $(document).ready(function () {
-    console.log("done");
+    // console.log("done");
     $('#search').on("keyup", function () {
         $('#result').show();
         $('#result').html('');
@@ -50,6 +50,7 @@ $(document).ready(function () {
         var exp = new RegExp(s, "i");
         // console.log(exp);
         $.getJSON('/node_modules/cities.json/cities.json', function (data) {
+            let c = 0;
             $.each(data, function (index, obj) {
                 if (obj.city.search(exp) != -1) {
                     // console.log("value: " + obj.city);
@@ -73,14 +74,14 @@ $(document).on("click", "li", function () {
         type: "GET",
         dataType: "jsonp",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             let wea = caps(data.weather[0].description);
             let min = (data.main.temp_min - 273.15).toFixed(0);
             let max = (data.main.temp_max - 273.15).toFixed(0);
             let curt = (data.main.temp - 273.15).toFixed(0);
-            console.log(min);
+            // console.log(min);
             gtz(data).then((data) => {
-                console.log(data);
+                // console.log(data);
                 let cur = formatAMPM(data.formatted);
                 let el = `<div class="card">
                             <p class="cname">${cityName}
@@ -94,9 +95,9 @@ $(document).on("click", "li", function () {
                     `
                 $('#screens').append(el);
             }).catch((error) => {
-                console.log(error);
+                // console.log(error);
             })
-            console.log(data);
+            // console.log(data);
         }
     })
     setTimeout(function () {
