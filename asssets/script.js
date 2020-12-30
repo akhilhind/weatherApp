@@ -25,16 +25,10 @@ function caps(s) {
 function formatAMPM(data) {
     var date = new Date();
     var hours = date.getHours();
-    // Minutes part from the timestamp
     var minutes = "" + date.getMinutes();
-    // Seconds part from the timestamp
     var seconds = "" + date.getSeconds();
-
-    // Will display time in 10:30:23 format
     var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
     console.log(formattedTime);
-
     var ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12;
@@ -46,6 +40,7 @@ function formatAMPM(data) {
 $(document).ready(function () {
     console.log("done");
     $('#search').on("keyup", function () {
+        $('#result').show();
         $('#result').html('');
         var s = $('#search').val();
         if (s === "") {
@@ -55,20 +50,15 @@ $(document).ready(function () {
         var exp = new RegExp(s, "i");
         // console.log(exp);
         $.getJSON('/node_modules/cities.json/cities.json', function (data) {
-            // console.log("inside");
-            let c = 0;
             $.each(data, function (index, obj) {
                 if (obj.city.search(exp) != -1) {
                     // console.log("value: " + obj.city);
                     $('#result').append('<li name=' + obj.city + '>' + obj.city + '</li>');
                     c++;
-                    // if (c === 5) break;
                 }
-                // else {
-                    // }
-                })
-            if(c == 0 ) {
-                $('#result').append('<p>City does not exists!</p>');        
+            })
+            if (c == 0) {
+                $('#result').append('<p>City does not exists!</p>');
             }
         })
     })
@@ -109,18 +99,22 @@ $(document).on("click", "li", function () {
             console.log(data);
         }
     })
-    setTimeout(function() { 
+    setTimeout(function () {
         $('#result').html('');
         // alert("Hello"); 
     }, 3000);
 })
 
-$(document).on("click", "#cl", function() {
-    if(confirm('This will erase all the data!!! Continue?')) {
+$(document).on("click", "#cl", function () {
+    if (confirm('This will erase all the data!!! Continue?')) {
         $('#screens').html('');
     }
 })
 
-$(document).on("click", "body", function() {
-    $('#result').html('');
+$(document).on("click", "body", function () {
+    $('#result').html('');;
+})
+
+$(document).on("click", function () {
+    $('#result').hide();
 })
