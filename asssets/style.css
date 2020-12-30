@@ -4,8 +4,9 @@
 }
 
 body {
-    /* background: rgb(2,0,36); */
-    background: linear-gradient(360deg, #00467F, #A5CC82);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
@@ -20,6 +21,7 @@ h1 {
     text-align: center;
     color: white;
     font-size: 80px;
+    margin: 1% 0;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 }
@@ -54,6 +56,7 @@ input {
     max-height: 300px;
     /* overflow: scroll; */
     overflow: hidden;
+    z-index: 100;
 }
 
 #result li, #result p {
@@ -79,14 +82,16 @@ input {
 }
 
 .card {
-    background-image: linear-gradient(#864BA2, #BF3A30);
+    background-image: linear-gradient(to top, #864BA2, #BF3A30);
     /* width: 13%; */
+    transition: 0.3s;
     color: white;
     padding: 1%;
     border-radius: 5%;
-    margin: 1%;
+    margin: 20px 1% 0;
     display: inline-block;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .cname {
@@ -159,4 +164,24 @@ input {
     background-position: right center;
     color: #fff;
     text-decoration: none;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card:not(:hover) {
+    transform: scale(1);
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

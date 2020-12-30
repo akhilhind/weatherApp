@@ -84,7 +84,7 @@ $(document).on("click", "li", function () {
                 // console.log(data);
                 let cur = formatAMPM(data.formatted);
                 let el = `<div class="card">
-                            <p class="cname">${cityName}
+                            <p class="cname">${cityName}</p>
                             <p class="dt">${days[d.getDay()]}, ${cur}</p> 
                             <p class="wea">${wea}</p>
                             <div class="two">
