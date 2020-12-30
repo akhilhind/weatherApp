@@ -135,6 +135,11 @@ input {
     text-align: center;
     background-color: #BF3A30;
     cursor: pointer;
+    font-weight: bold;
+}
+
+#cl:active {
+    transform: scale(0.8);
 }
 
 .btn-grad {
@@ -142,7 +147,7 @@ input {
     padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
-    transition: 0.5s;
+    transition: 0.2s;
     background-size: 200% auto;
     color: white;
     border-radius: 10px;
